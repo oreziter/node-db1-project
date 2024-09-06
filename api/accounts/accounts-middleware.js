@@ -3,9 +3,6 @@ const db = require('../../data/db-config')
 
 
 exports.checkAccountPayload = (req, res, next) => {
-  // DO YOUR MAGIC
-  // Note: you can either write "manual" validation logic
-  // or use the Yup library (not currently installed)
     const error = { status: 400 }
     const { name, budget } = req.body 
     if (name === undefined || budget === undefined) {
@@ -48,7 +45,7 @@ exports.checkAccountId = async (req, res, next) => {
   try {
     const account = await Account.getById(req.params.id)
     if (!account) {
-      next({ status: 404,  message: "account not found" })
+      next({ status: 404,  message: 'account not found' })
     } else {
       req.account = account
       next()

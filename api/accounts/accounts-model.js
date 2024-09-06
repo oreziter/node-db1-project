@@ -5,10 +5,9 @@ const getAll = () => {
   // select * from accounts;
   return db('accounts')
 }
-
 const getById = id => {
   // select * from accounts where id = 1;
-   return db('accounts').where('id', id)
+   return db('accounts').where('id', id).first()
 }
 
 const create = async account => {
@@ -16,8 +15,9 @@ const create = async account => {
  return getById(id)
 }
 
-const updateById = (id, account) => {
-  // DO YOUR MAGIC
+const updateById = async (id, account) => {
+  await db('accounts').where('id', id).update(account)
+  return getById(id)
 }
 
 const deleteById = id => {
