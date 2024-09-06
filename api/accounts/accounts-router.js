@@ -40,15 +40,14 @@ router.put(
   md.checkAccountId,
   md.checkAccountPayload,
   async (req, res, next) => {
-  const updated = await Account.updateById(req.params.id, req.body)
-  res.json(updated) 
-  try {
-    res.json('updated account') 
-  } catch (err) {
-    next(err)
-  }
-});
-
+    try{
+      const updated = await Account.updateById(req.params.id, req.body)
+      res.json(updated)
+    } catch (err) {
+      next(err)
+    }
+  });
+   
 router.delete('/:id', md.checkAccountId, async (req, res, next) => {
   try {
     await Account.deleteById(req.params.id)
